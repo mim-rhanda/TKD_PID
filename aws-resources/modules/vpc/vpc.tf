@@ -7,17 +7,14 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.5.0"
 
-  name               = "vpc-django-dev"
+  name               = "${var.PREFIX}-${var.ENV}-vpc"
   cidr               = "10.0.0.0/16"
   azs                = data.aws_availability_zones.available.names
   enable_nat_gateway = true
-  public_subnets     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  database_subnets   = ["10.0.21.0/24", "10.0.22.0/24", "10.0.23.0/24"]
+  public_subnets     = ["10.0.1.0/24"]
+  database_subnets   = ["10.0.11.0/24", "10.0.12.0/24"]
 
-  tags = merge(
-    var.DEFAULT_TAGS,
-    {"Name": "${var.ENV}-${var.PREFIX}"}
-    )
+  tags = var.DEFAULT_TAGS
 }
 
 output "vpc_id" {
@@ -28,8 +25,8 @@ output "vpc_cidr_block" {
   value = module.vpc.vpc_cidr_block
 }
 
-output "private_subnets" {
-  value = module.vpc.private_subnets
+output "database_subnets" {
+  value = module.vpc.database_subnets
 }
 
 output "public_subnets" {

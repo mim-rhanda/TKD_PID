@@ -1,7 +1,8 @@
 ######################
 # Security Group
 ######################
-resource "aws_security_group" "alb" {
+resource "aws_security_group" "database_sg" {
+  name = "${var.PREFIX}-${var.ENV}-database-sg"
   vpc_id = var.VPC_ID
 
   egress {
@@ -12,69 +13,15 @@ resource "aws_security_group" "alb" {
   }
 
   ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = merge(
-    var.DEFAULT_TAGS,
-    {"Name" = "${var.ENV}-${var.PREFIX}-alb"}
-  )
-}
-
-resource "aws_security_group" "django_service" {
-  vpc_id = var.VPC_ID
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port       = 8000
-    to_port         = 8000
-    protocol        = "tcp"
-    security_groups = [aws_security_group.alb.id]
-  }
-
-  tags = merge(
-    var.DEFAULT_TAGS,
-    {"Name" = "${var.ENV}-${var.PREFIX}-fargate-service"}
-  )
-}
-
-//resource "aws_security_group_rule" "allow_icmp_all" {
-//  type = "ingress"
-//  from_port = -1
-//  to_port   = -1
-//  protocol  = "icmp"
-//  cidr_blocks = ["0.0.0.0/0"]
-//  security_group_id = aws_security_group.django_service.id
-//}
-
-resource "aws_security_group" "django_db" {
-  vpc_id = var.VPC_ID
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port       = 5432
-    to_port         = 5432
+    from_port       = 3306
+    to_port         = 3306
     protocol        = "tcp"
     cidr_blocks = [var.VPC_CIDR_BLOCK]
   }
 }
 
-resource "aws_security_group" "temp" {
+resource "aws_security_group" "app_sg" {
+  name = "${var.PREFIX}-${var.ENV}-app-sg"
   vpc_id = var.VPC_ID
 
   egress {
@@ -91,24 +38,31 @@ resource "aws_security_group" "temp" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge(
-    var.DEFAULT_TAGS,
-    {"Name" = "${var.ENV}-${var.PREFIX}-temp"}
-  )
+  tags = var.DEFAULT_TAGS
 }
 
-output "alb_sg_id" {
-  value = aws_security_group.alb.id
+resource "aws_security_group_rule" "allow_http_all" {
+  type = "ingress"
+  from_port = 80
+  to_port   = 80
+  protocol  = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.app_sg.id
 }
 
-output "django_sg_id" {
-  value = aws_security_group.django_service.id
+resource "aws_security_group_rule" "allow_https_all" {
+  type = "ingress"
+  from_port = 443
+  to_port   = 443
+  protocol  = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.app_sg.id
 }
 
-output "db_sg_id" {
-  value = aws_security_group.django_db.id
+output "database_sg_id" {
+  value = aws_security_group.database_sg.id
 }
 
-output "temp_sg_id" {
-  value = aws_security_group.temp.id
+output "app_sg_id" {
+  value = aws_security_group.app_sg.id
 }

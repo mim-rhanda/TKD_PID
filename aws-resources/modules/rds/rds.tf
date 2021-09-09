@@ -1,40 +1,35 @@
 ######################
 # RDS
 ######################
-resource "aws_rds_instance" "django_db" {
-  cluster_identifier      = "aurora-single-django-db"
-  engine                  = "aurora-mysql"
 
-  database_name           = "django_db"
-  master_username         = var.USERNAME
-  master_password         = var.PASSWORD
-
-  db_subnet_group_name    = var.DB_SUBNET_GROUP
-  vpc_security_group_ids  = [var.DB_SG_ID]
-
+resource "aws_db_instance" "db_instance" {
+  identifier = "${var.PREFIX}-${var.ENV}"
+  allocated_storage    = 50
+  engine               = "mysql"
+  engine_version       = "5.7"
+  instance_class       = var.DB_INSTANCE_TYPE
+  vpc_security_group_ids = [var.DB_SG_ID]
+  db_subnet_group_name = var.DB_SUBNET_GROUP
+  username             = var.USERNAME
+  password             = var.PASSWORD
+  parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
 
-  tags = merge(
-    var.DEFAULT_TAGS,
-    { "Name": "${var.ENV}-${var.PREFIX}-db-cluster" }
-  )
+  tags = var.DEFAULT_TAGS
 }
 
 resource "aws_key_pair" "instance_key" {
-  key_name   = "temp_instance_key"
-  public_key = file("~/.ssh/id_rsa.pub")
+  key_name   = "${var.PREFIX}-instance-key"
+  public_key = file("~/.ssh/id_rsa-20210909.pub")
 
-  tags = merge(
-  var.DEFAULT_TAGS,
-  {"Name": "${var.ENV}-${var.PREFIX}-key"}
-  )
+  tags = var.DEFAULT_TAGS
 }
 
-resource "aws_instance" "temp_instance" {
-  ami           = "ami-0ab3e16f9c414dee7"
+resource "aws_instance" "app_instance" {
+  ami           = var.APP_INSTANCE_AMI
   instance_type = "t2.micro"
   key_name      = aws_key_pair.instance_key.key_name
-  vpc_security_group_ids = [var.TEMP_SG_ID]
+  vpc_security_group_ids = [var.APP_SG_ID]
   subnet_id = var.PUBLIC_SUBNETS[0]
 
   root_block_device {
@@ -42,10 +37,7 @@ resource "aws_instance" "temp_instance" {
     volume_size = 10
   }
 
-  tags = merge(
-    var.DEFAULT_TAGS,
-    {"Name": "${var.ENV}-${var.PREFIX}-temp"}
-  )
+  tags = var.DEFAULT_TAGS
 
   lifecycle { create_before_destroy = true }
 
@@ -53,24 +45,25 @@ resource "aws_instance" "temp_instance" {
   provisioner "file" {
     connection {
       user        = "ec2-user"
-      host        = aws_instance.temp_instance.public_ip
-      private_key = file("~/.ssh/id_rsa")
+      host        = aws_instance.app_instance.public_ip
+      private_key = file("~/.ssh/id_rsa-20210909")
     }
 
     source      = "../scripts/schema.sh"
     destination = "/home/ec2-user/schema.sh"
   }
 
+
   provisioner "remote-exec" {
     connection {
       user        = "ec2-user"
-      host        = aws_instance.temp_instance.public_ip
-      private_key = file("~/.ssh/id_rsa")
+      host        = aws_instance.app_instance.public_ip
+      private_key = file("~/.ssh/id_rsa-20210909")
     }
 
     inline = [
-      "/bin/bash ~/schema.sh ${aws_rds_cluster_endpoint.django_db_rw.endpoint} ${aws_rds_cluster.django_db.port} ${var.USERNAME} ${var.PASSWORD} ${var.APP_USER} ${var.APP_PASS}"
+      "/bin/bash ~/schema.sh ${aws_db_instance.db_instance.domain} ${aws_db_instance.db_instance.port} ${var.USERNAME} ${var.PASSWORD} ${var.APP_USER} ${var.APP_PASS}"
     ]
   }
-  depends_on = [aws_rds_cluster_instance.cluster_instances]
+  depends_on = [aws_db_instance.db_instance]
 }
