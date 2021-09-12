@@ -3,7 +3,7 @@
 ######################
 
 resource "aws_db_instance" "db_instance" {
-  identifier = "${var.PREFIX}-${var.ENV}"
+  identifier = "${var.PREFIX}-${var.ENV}-db"
   allocated_storage    = 50
   engine               = "mysql"
   engine_version       = "5.7"
@@ -25,6 +25,13 @@ resource "aws_key_pair" "instance_key" {
   tags = var.DEFAULT_TAGS
 }
 
+resource "aws_eip" "app_eip" {
+  vpc      = true
+  instance = aws_instance.app_instance.id
+
+  tags = var.DEFAULT_TAGS
+}
+
 resource "aws_instance" "app_instance" {
   ami           = var.APP_INSTANCE_AMI
   instance_type = "t2.micro"
@@ -37,10 +44,12 @@ resource "aws_instance" "app_instance" {
     volume_size = 10
   }
 
-  tags = var.DEFAULT_TAGS
+  tags = merge(
+    var.DEFAULT_TAGS,
+    {"Name" = "${var.PREFIX}-${var.ENV}-ec2"}
+  )
 
   lifecycle { create_before_destroy = true }
-
 
   provisioner "file" {
     connection {
@@ -53,7 +62,6 @@ resource "aws_instance" "app_instance" {
     destination = "/home/ec2-user/schema.sh"
   }
 
-
   provisioner "remote-exec" {
     connection {
       user        = "ec2-user"
@@ -62,8 +70,27 @@ resource "aws_instance" "app_instance" {
     }
 
     inline = [
-      "/bin/bash ~/schema.sh ${aws_db_instance.db_instance.domain} ${aws_db_instance.db_instance.port} ${var.USERNAME} ${var.PASSWORD} ${var.APP_USER} ${var.APP_PASS}"
+      "/bin/bash ~/schema.sh ${aws_db_instance.db_instance.endpoint} ${var.USERNAME} ${var.PASSWORD} ${var.APP_USER} ${var.APP_PASS}"
     ]
   }
+
+  provisioner "file" {
+    connection {
+      user        = "ec2-user"
+      host        = aws_instance.app_instance.public_ip
+      private_key = file("~/.ssh/id_rsa-20210909")
+    }
+
+    source      = "../scripts/httpd.conf"
+    destination = "/etc/httpd/conf/httpd.conf"
+  }
+
   depends_on = [aws_db_instance.db_instance]
+}
+
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.app_instance.id
+  allocation_id = aws_eip.app_eip.id
+
+  depends_on = [aws_instance.app_instance]
 }

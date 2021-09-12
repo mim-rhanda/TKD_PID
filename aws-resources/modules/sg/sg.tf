@@ -18,6 +18,8 @@ resource "aws_security_group" "database_sg" {
     protocol        = "tcp"
     cidr_blocks = [var.VPC_CIDR_BLOCK]
   }
+
+  tags = var.DEFAULT_TAGS
 }
 
 resource "aws_security_group" "app_sg" {
