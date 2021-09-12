@@ -1,6 +1,11 @@
 # TKD_PID
+```bash
+# instance
+$ terraform apply -target=module.rds.aws_instance.app_instance
+$ terraform destroy -target=module.rds.aws_instance.app_instance
+```
 
- 環境構築手順
+# 環境構築手順
 
  ・Php Verison :  7.4.16
  
@@ -32,13 +37,3 @@ Apacheダウンロード＆インストール
 
 ③Apacheのインストール
 　https://www.javadrive.jp/apache/install/index1.html#section3
-
-
-
-
-
-
-
-
-
-

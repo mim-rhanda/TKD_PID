@@ -1,0 +1,16 @@
+variable "ENV" {}
+variable "PREFIX" {}
+variable "AWS_REGION" {}
+variable "DEFAULT_TAGS" {}
+variable "VPC_ID" {}
+variable "PUBLIC_SUBNETS" {}
+variable "DB_SUBNET_GROUP" {}
+variable "DB_SG_ID" {}
+variable "APP_SG_ID" {}
+variable "USERNAME" {}
+variable "PASSWORD" {}
+variable "APP_USER" {}
+variable "APP_PASS" {}
+variable "DB_INSTANCE_TYPE" {}
+variable "APP_INSTANCE_TYPE" {}
+variable "APP_INSTANCE_AMI" {}

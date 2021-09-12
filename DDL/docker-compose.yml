@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: clinical_study
+      MYSQL_USER: clinical_study
+      MYSQL_PASSWORD: clinical_study
