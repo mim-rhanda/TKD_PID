@@ -18,7 +18,7 @@ class ApplicationLogTable
     public function insert($data)
 	{
 		try {
-			$query = " INSERT INTO application_log (email, medical_institution_code, age_group, consent_for_join, ascent_for_join, created_at, updated_at) VALUES (:email, :medical_institution_code, :age_group, 1, 1, NOW(), NOW())";
+			$query = " INSERT INTO application_log(email, medical_institution_code, parent_email, age, consent_for_join, ascent_for_join, created_at, updated_at) VALUES (:email, :medical_institution_code, :parent_email, :age, 12, 11, NOW(), NOW())";
 
 			$statement = $this->db->prepare($query);
 			$statement->execute($data);

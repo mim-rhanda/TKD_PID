@@ -15,9 +15,9 @@ class MedicalInstitutionMasterTable
 		$this->db = $db->connect();
 	}
 
-	public function getAll()
+	public function getCodes()
 	{
-		$statement = $this->db->query("SELECT * FROM medical_institution_master");
+		$statement = $this->db->query("SELECT code FROM medical_institution_master");
 		return $statement->fetchAll();
 	}
 

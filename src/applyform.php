@@ -1,3 +1,15 @@
+<?php
+
+include("vendor/autoload.php");
+
+use Libs\Database\MySQL;
+use Libs\Database\ApplicationLogTable;
+use Libs\Database\MedicalInstitutionMasterTable;
+$table = new MedicalInstitutionMasterTable(new MySQL());
+$codes = $table->getCodes();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,131 +18,255 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
     <script src="js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="js/applyform.js"></script>
+    <script>
+        let codes = [];
+        
+        <?php 
+        
+        foreach ($codes as $code){?>
+  
+        codes.push('<?php echo $code->code;?>');
+        
+        
+        <?php } ?>
+        console.log(codes);
+   </script>     
+
+    
 </head>
 <body>
-    <div id="header"></div>
-    <div id="container"> 
+    <div class="container">
         <div class="main_wrapper">
-            <h1>研究参加申込フォーム</h1>
-            <div class="form_wrap">
-                <p class="warning-text"><span>「※」は必須項目です。</span></p>
-                <form class="form-horizontal" action="saveinfos.php" method="post">  
-                    <div class="form-group">
-                        <label class="control-label col-sm-5" for="age_group">あなたの年齢を教えてください:</label>
-                        <div class="col-sm-7">
-                            <select class="form-control" name="age_group">
-                                <option value="">--Please choose an option--</option>
-                                <?php for ($i = 12; $i <= 100; $i++) { ?>
-                                <option value="<?php echo $i; ?>"><?php echo $i; ?>歳です</option>
+            <div class="content_wrapper">
+                <h1>研究参加申込フォーム</h1>
+                <form class= "apply_form_pc" id="apply_form" action="saveinfos.php" method="post">
+                  <p class="warning-text"><span>「※」は必須項目です。</span></p>
+                    <div class="row">
+                      <div class="col-35">
+                        <label for="age">あなたの年齢を教えてください</label>
+                      </div>
+                      <div class="col-75">
+                          <select class="form-control" name="age">
+                            <option value="">--Please choose an option--</option>
+                            <?php for ($i = 0; $i <= 100; $i++) { ?>
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?>歳です</option>
                             <?php } ?>
-                            </select>
-                        </div>
+                          </select>
+                      </div>
                     </div>
 
-                    <h3>メールアドレス</h3>
-                    <p>メールアドレスをお持ちでない未成年の方は保護者様のメールアドレスを入力してください。</p>
-                    <div class="form-group">
-                        <label class="control-label col-sm-5" for="email">Email:<span class="cmn-warning-text">※</span></label>
-                        <div class="col-sm-7">
-                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-                        </div>
+                    <div class="row">
+                      <h3>メールアドレス</h3>
+                      <p>メールアドレスをお持ちでない未成年の方は保護者様のメールアドレスを入力してください。</p>
+                      <div class="col-35">
+                        <label for="parent_email">Email:<span class="cmn-warning-text">※</span></label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" id="parent_email" name="parent_email" placeholder="Enter Email Address..">
+                      </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-sm-5" for="confirm-email">Confirm Email:<span class="cmn-warning-text">※</span></label>
-                        <div class="col-sm-7">          
-                            <input type="email" class="form-control" id="confirm_email" placeholder="Enter confirm email" name="confirm_email">
-                        </div>
+                    <div class="row">
+                      <div class="col-35">
+                        <label for="confirm_parent_email">Confirm Email:<span class="cmn-warning-text">※</span></label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" id="confirm_parent_email" name="confirm_parent_email" placeholder="Enter Confirm..">
+                      </div>
                     </div>
-        
+
+                    <div class="row">
                     <h3>謝礼送付先</h3>
                     <p>未成年の方は謝礼送付用に保護者様のメールアドレスを入力してください。上で入力したメールアドレスと同一の場合はチェックを入れてください。</p>
-                    <div class="form-group">
-                        <div class="col-sm-2"></div>
-                        <label class="control-label col-sm-9">謝礼用メールアドレスは上記メールアドレスと同一です</label>
-                        <div class="col-sm-1">          
-                            <input type="checkbox" class="form-control" id="mailcheck" name="consent_for_join" value="1">
-                        </div>
-                    </div> 
-
-                    <div class="form-group">
-                        <label class="control-label col-sm-5" for="email">Email:<span class="cmn-warning-text">※</span></label>
-                        <div class="col-sm-7">
-                            <input type="email" class="form-control" id="email2" placeholder="Enter email" name="email2">
-                        </div>
+                      <div class="col-95">
+                        <label for="mailcheck">謝礼用メールアドレスは上記メールアドレスと同一です</label>
+                      </div>
+                      <div class="col-5">
+                        <input type="checkbox" id="mailcheck" name="mailcheck" value="1">
+                      </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-sm-5" for="confirm-email">Confirm Email:<span class="cmn-warning-text">※</span></label>
-                        <div class="col-sm-7">          
-                            <input type="email" class="form-control" id="confirm-email2" placeholder="Enter confirm email" name="confirm-email2">
-                        </div>
+                    <div class="row">
+                      <div class="col-35">
+                        <label for="email">Email:<span class="cmn-warning-text">※</span></label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" id="email" name="email" placeholder="Enter Email..">
+                      </div>
+                    </div>
+    
+                    <div class="row">
+                      <div class="col-35">
+                        <label for="confirm_email">Confirm Email:<span class="cmn-warning-text">※</span></label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" id="confirm_email" name="confirm_email" placeholder="Enter Confrim Email..">
+                      </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-sm-5" for="code">承認コード :<span class="cmn-warning-text">※</span></label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" id="code" placeholder="Enter code" name="medical_institution_code">
-                            <span class="code_text">※ 研究案内ﾘｰﾌﾚｯﾄに記載されたｺｰﾄﾞを入力してください</span>
+                    <div class="row">
+                      <div class="col-35">
+                        <label for="medical_institution_code">承認コード:<span class="cmn-warning-text">※</span></label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" class="form-control" id="medical_institution_code" placeholder="Enter code" name="medical_institution_code">
+                        <span class="code_text">※ 研究案内ﾘｰﾌﾚｯﾄに記載されたｺｰﾄﾞを入力してください</span>
+                      </div>
+                    </div><br>
 
-                        </div>
+                    <div class="row">
+                      <div class="col-35"></div>
+                      <div class="col-75">
+                        <a href="https://3h-ct.co.jp/" target="_blank">個人情報保護規約</a> 
+                      </div>
+                    </div><br>
+
+                    <div class="row">
+                      <div class="col-85-check">
+                        <label for="agreecheck">個人情報保護規約を読み同意します</label>
+                      </div>
+                      <div class="col-15-check1"> 
+                        <input type="checkbox" id="agreecheck" name="agreecheck" value="1">
+                      </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-5">
-                           <a href="https://3h-ct.co.jp/" target="_blank">個人情報保護規約</a> 
+                    <div class="row">
+                      <div class="human_check">
+                        <div class="col-15 text">
+                          <input type="checkbox" class="form-control" id="humancheck" name="humancheck">
                         </div>
-                        <div class="col-sm-3"> </div>   
+                        <div class="col-55">
+                          <label >私はロボットではありません</label>
+                        </div>
+                        <div class="col-40" reptcha_img>
+                          <img src="img/recaptcha.png" alt="recaptcha" width="70px">
+                        </div>
+                        <p class="recaptcha_text">reCAPTCHA<br>プライバシーポリシー・利用規約</p>
+                      </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-6">
-                            <label class="control-label">個人情報保護規約を読み同意します</label>
-                        </div>
-                        <div class="col-sm-1">
-                            <input type="checkbox" class="form-control" id="agreecheck" name="agreecheck">
-                        </div>   
+                    <div class="row">
+                      <button id="btn_continue" class="btn_adjust" disabled="true" >入力へ進む</button>
                     </div>
-                    
-                    <div class="form-group">
-                        <div class="col-sm-1"></div>
-                        
-                        
-                        <div class="col-sm-10">
-                        <div class="human_check">
-                            <div class="col-sm-1 text">
-                                <input type="checkbox" class="form-control" id="humancheck" name="humancheck">
-                            </div>
-                            <div class="col-sm-8 text">
-                                <label class="control-label">私はロボットではありません</label>
-                            </div>
-                            <div class="col-sm-3 reptcha_img">
-                                <img src="img/recaptcha.png" alt="recaptcha" width="70px">
-                            </div>
-                            <p class="recaptcha_text">reCAPTCHA<br>プライバシーポリシー・利用規約</p>
-                        </div>
+                </form>
 
-                        </div>
-                        <div class="col-sm-1"></div>
-                        
+                <form class= "apply_form_phone" id="apply_form1" action="saveinfos.php" method="post">
+                  <p class="warning-text"><span>「※」は必須項目です。</span></p>
+                    <div class="row">
+                      <div class="col-35">
+                        <label for="age">あなたの年齢を教えてください</label>
+                      </div>
+                      <div class="col-75">
+                          <select class="form-control" name="age">
+                            <option value="">--Please choose an option--</option>
+                            <?php for ($i = 0; $i <= 100; $i++) { ?>
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?>歳です</option>
+                            <?php } ?>
+                          </select>
+                      </div>
                     </div>
 
-                    <div class="form-group">   
-                        <div class="col-sm-2"></div>     
-                        <div class="col-sm-8">
-                            <button id="btn_continue" class="btn btn-primary btn-lg" disabled>入力へ進む</button>
+                    <div class="row">
+                      <h3>メールアドレス</h3>
+                      <p>メールアドレスをお持ちでない未成年の方は保護者様のメールアドレスを入力してください。</p>
+                      <div class="col-35">
+                        <label for="parent_email">Email:<span class="cmn-warning-text">※</span></label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" id="parent_email" name="parent_email" placeholder="Enter Email Address..">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-35">
+                        <label for="confirm_parent_email">Confirm Email:<span class="cmn-warning-text">※</span></label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" id="confirm_parent_email" name="confirm_parent_email" placeholder="Enter Confirm..">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                    <h3>謝礼送付先</h3>
+                    <p>未成年の方は謝礼送付用に保護者様のメールアドレスを入力してください。上で入力したメールアドレスと同一の場合はチェックを入れてください。</p>
+                      <div class="col-95">
+                        <label for="mailcheck">謝礼用メールアドレスは上記メールアドレスと同一です</label>
+                      </div>
+                      <div class="col-5">
+                        <input type="checkbox" id="mailcheck" name="mailcheck" value="1">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-35">
+                        <label for="email">Email:<span class="cmn-warning-text">※</span></label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" id="email" name="email" placeholder="Enter Email..">
+                      </div>
+                    </div>
+    
+                    <div class="row">
+                      <div class="col-35">
+                        <label for="confirm_email">Confirm Email:<span class="cmn-warning-text">※</span></label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" id="confirm_email" name="confirm_email" placeholder="Enter Confrim Email..">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-35">
+                        <label for="medical_institution_code">承認コード:<span class="cmn-warning-text">※</span></label>
+                      </div>
+                      <div class="col-75">
+                        <input type="text" class="form-control" id="medical_institution_code" placeholder="Enter code" name="medical_institution_code">
+                        <span class="code_text">※ 研究案内ﾘｰﾌﾚｯﾄに記載されたｺｰﾄﾞを入力してください</span>
+                      </div>
+                    </div><br>
+
+                    <div class="row">
+                      <div class="col-35"></div>
+                      <div class="col-75">
+                        <a href="https://3h-ct.co.jp/" target="_blank">個人情報保護規約</a> 
+                      </div>
+                    </div><br>
+
+                    <div class="row">
+                      <div class="col-85-check">
+                        <label for="agreecheck1">個人情報保護規約を読み同意します</label>
+                      </div>
+                      <div class="col-15-check1"> 
+                        <input type="checkbox" id="agreecheck1" name="agreecheck1" value="1">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="human_check">
+                        <div class="col-15 text">
+                          <input type="checkbox" class="form-control" id="humancheck" name="humancheck">
                         </div>
-                        <div class="col-sm-2"></div> 
+                        <div class="col-55">
+                          <label >私はロボットではありません</label>
+                        </div>
+                        <div class="col-40" reptcha_img>
+                          <img src="img/recaptcha.png" alt="recaptcha" width="70px">
+                        </div>
+                        <p class="recaptcha_text">reCAPTCHA<br>プライバシーポリシー・利用規約</p>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <button id="btn_continue1" disabled="true" >入力へ進む</button>
                     </div>
                 </form>
             </div>
-        </div>
+          </div> 
     </div>
-    <div id="footer"></div>
 </body>
 </html>
