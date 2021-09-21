@@ -17,8 +17,9 @@ CREATE TABLE `application_log` (
 CREATE IF NOT EXISTS TABLE `application_log` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT,
     `email` varchar(100) NOT NULL COLLATE utf8mb4_unicode_ci,
+    `parent_email` varchar(100) DEFAULT NULL COLLATE utf8mb4_unicode_ci,
     `medical_institution_code` varchar(4) NOT NULL COLLATE utf8mb4_unicode_ci,
-    `age_group` varchar(20) NOT NULL COLLATE utf8mb4_unicode_ci,
+    `age` int(5) NOT NULL,
     `consent_for_join` tinyint(1) NOT NULL,
     `ascent_for_join` tinyint(1) NOT NULL,
     `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,

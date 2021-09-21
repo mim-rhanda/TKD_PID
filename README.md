@@ -5,35 +5,30 @@ $ terraform apply -target=module.rds.aws_instance.app_instance
 $ terraform destroy -target=module.rds.aws_instance.app_instance
 ```
 
-# 環境構築手順
+# 開発環境構築
+- Php Version:    7.4
+- Apache Version: 2.4
+- MySQL Version:  5.7
 
- ・Php Verison :  7.4.16
- 
- ・Apache Version: Apache/2.4.41 (Win64)
-
-php ダウンロード＆インストール
-
-①以下のリンクからPhp.zipをダウンロードする。
+## phpダウンロード&インストール
+1. 以下のリンクからPhp.zipをダウンロードする。
 　https://www.php.net/downloads.php
-
-②zipファイルを解凍して任意のフォルダに配置する
-　例：C:　配下
-
-③phpフォルダがあるパス（例：C:\php）配下にあるphp.ini-production または php.ini-development をコピーして php.ini を作成する
-
-④Windows環境変数(PATH)に　phpフォルダがあるパス（例：C:\php）を設定する
-　　
-⑤確認としてPHPのバージョンを確認してみる
-　php -v
+2. zipファイルを解凍して任意のフォルダに配置する 
+   1. 例：C:　配下
+3. phpフォルダがあるパス（例：C:\php）配下にあるphp.ini-production または php.ini-development をコピーして php.ini を作成する
+4. Windows環境変数(PATH)に　phpフォルダがあるパス（例：C:\php）を設定する
+5. 確認としてPHPのバージョンを確認してみる 
+   1. php -v
 
 
-Apacheダウンロード＆インストール
- 
-①Apacheを以下のリンクでダウンロードする
-　https://www.javadrive.jp/apache/install/index1.html#section1
+## Apacheダウンロード＆インストール
 
-②Visual C++ 再頒布可能パッケージのインストール
-　https://www.javadrive.jp/apache/install/index1.html#section2
+1. Apacheを以下のリンクでダウンロードする
+   1. https://www.javadrive.jp/apache/install/index1.html#section1
+2. Visual C++ 再頒布可能パッケージのインストール
+   1. https://www.javadrive.jp/apache/install/index1.html#section2
+3. Apacheのインストール
+   1. https://www.javadrive.jp/apache/install/index1.html#section3
 
-③Apacheのインストール
-　https://www.javadrive.jp/apache/install/index1.html#section3
+
+ssh -i ~/.ssh/id_rsa-20210909 ec2-user@18.181.150.106
