@@ -15,7 +15,7 @@
             <div class="content_wrapper">
                 <h1>研究参加申込フォーム</h1>
                 <h2>同意説明文書</h2>
-                <h3>以下をお読みいただき、内容をご理解の上研究にご参加ください。<br>また、16歳未満の方は保護者様と一緒にをお読みいただき、<br>・・・・・・・・・・・・・・・・・・・・・・・・・・・</h3>
+                <h3>同意説明文書をお読みいただき、同意いただける場合は、下記の該当する項目にチェックしてください。</h3>
                 <div class="row">
                     <div class="agreement_textbox">
                         <h3 class="agreement_title">同意説明文書</h3>
@@ -29,11 +29,14 @@
 
                 <div class="row">
                     <div class="check_wrapper">
+                        <label for="01-B" class="checkbox01">同意説明文書内の登録基準に当てはまっています</label>
                         <input type="checkbox" id="agreecheck1" name="agreecheck01" attr="">
-                        <label for="01-B" class="checkbox01">＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊</label>
                         <br>
+                        <label for="01-C" class="checkbox01">同意説明文書内の除外基準に当てはまっていません</label>
                         <input type="checkbox" id="agreecheck2" name="agreecheck02">
-                        <label for="01-C" class="checkbox01">＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊</label>
+                        <br>
+                        <label for="01-C" class="checkbox01">研究参加に同意します</label>
+                        <input type="checkbox" id="agreecheck3" name="agreecheck03">
                     </div>
                 </div>
 

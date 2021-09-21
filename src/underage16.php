@@ -15,7 +15,29 @@
             <div class="content_wrapper">
                 <h1>研究参加申込フォーム</h1>
                 <h2>16歳未満の方と保護者様へ</h2>
-                <h3>16歳未満の研究参加ご本人様と保護者様で一緒に以下の<br>説明文書をお読みいただき、・・・・・・・・・・・・・</h3>
+                <h3>1アセント文書（未成年用同意説明文書）をダウンロードしてお読みください。<br>アセント文書をお読みいただき、同意いただける場合は、下記の該当する項目にチェックしてください。</h3>
+                <div class="row">
+                    <div class="agreement_textbox">
+                        <h3 class="agreement_title">アセント文書（未成年用同意説明文書）</h3>
+                        <p class="agreement_text">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                        </p>
+                         <p class="pdf_download"><a href="pdf/samplepdf.pdf" download="sample.pdf">PDFダウンロード</a></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="check_wrapper">
+                        <label for="01-B" class="checkbox01">アセント文書（未成年用同意説明文書）の内容を理解しました</label>
+                        <input type="checkbox" id="agreecheck1" name="agreecheck01" attr="">
+                        <br>
+                        <label for="01-C" class="checkbox01">研究参加に同意します</label>
+                        <input type="checkbox" id="agreecheck2" name="agreecheck02">
+                    </div>
+                </div>
+
+                <h3>保護者の方もしくは保護者に該当する方と一緒にダウンロードしてお読みください。<br>同意説明文書をお読みいただき、同意いただける場合は、下記の該当する項目にチェックしてください。</h3>
                 <div class="row">
                     <div class="agreement_textbox">
                         <h3 class="agreement_title">同意説明文書</h3>
@@ -29,32 +51,14 @@
 
                 <div class="row">
                     <div class="check_wrapper">
-                        <input type="checkbox" id="agreecheck1" name="agreecheck01" attr="">
-                        <label for="01-B" class="checkbox01">＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊</label>
-                        <br>
-                        <input type="checkbox" id="agreecheck2" name="agreecheck02">
-                        <label for="01-C" class="checkbox01">＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="agreement_textbox">
-                        <h3 class="agreement_title">アセント文書</h3>
-                        <p class="agreement_text">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                        </p>
-                         <p class="pdf_download"><a href="pdf/samplepdf.pdf" download="sample.pdf">PDFダウンロード</a></p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="check_wrapper">
+                        <label for="01-B" class="checkbox01">同意説明文書内の登録基準に当てはまっています</label>
                         <input type="checkbox" id="agreecheck3" name="ascentcheck01" attr="">
-                        <label for="01-B" class="checkbox01">＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊</label>
                         <br>
+                        <label for="01-C" class="checkbox01">同意説明文書内の除外基準に当てはまっていません</label>
                         <input type="checkbox" id="agreecheck4" name="ascentcheck02">
-                        <label for="01-C" class="checkbox01">＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊</label>
+                        <br>
+                        <label for="01-C" class="checkbox01">研究参加に同意します</label>
+                        <input type="checkbox" id="agreecheck5" name="ascentcheck02">
                     </div>
                 </div>
 

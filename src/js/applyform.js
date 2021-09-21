@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    console.log(codes);
+    // console.log("code are");
+    // console.log(codes);
     $('#agreecheck').click(function() {
         var r =$("#agreecheck").is(":checked");
         if(r) {
@@ -11,7 +12,6 @@ $(document).ready(function() {
 
     $('#agreecheck1').click(function() {
         var r =$("#agreecheck1").is(":checked");
-        alert("check 1111");
         if(r) {
             $("#btn_continue1").attr('disabled', false);
         }else{
@@ -31,16 +31,44 @@ $(document).ready(function() {
     })
 
     $('#mailcheck1').click(function() {
-        var m =$("#mailcheck").is(":checked");
+        var m =$("#mailcheck1").is(":checked");
         if(m) {
-            $("#email").attr('disabled', true);
-            $("#confirm_email").attr('disabled', true);
+            $("#email1").attr('disabled', true);
+            $("#confirm_email1").attr('disabled', true);
         }else{
-            $("#email").attr('disabled', false);
-            $("#confirm_email").attr('disabled', false);
+            $("#email1").attr('disabled', false);
+            $("#confirm_email1").attr('disabled', false);
         }
     })
     
+    $.validator.addMethod('institution_code', function(value, element, codes) {
+        // お決まりの定型文
+        // 検証対象の要素にこのルールが設定されているか
+        if ( this.optional( element ) ) {
+            return true;
+        }
+
+        if (!(codes.includes(value))){
+            return false;
+        }
+        return true;
+    }, );
+
+
+    $.validator.addMethod('institution_code1', function(value, element, codes) {
+        // お決まりの定型文
+        // 検証対象の要素にこのルールが設定されているか
+        if ( this.optional( element ) ) {
+            return true;
+        }
+
+        if (!(codes.includes(value))){
+            return false;
+        }
+        return true;
+    }, );
+
+
     $('#apply_form').validate({
         rules: {
           parent_email: {
@@ -61,7 +89,9 @@ $(document).ready(function() {
           },
           medical_institution_code: {
             required: true,
+            minlength: 4,
             maxlength: 4,
+            institution_code: codes
           },
         },
         messages: {
@@ -83,15 +113,16 @@ $(document).ready(function() {
           },
           medical_institution_code: {
               required: 'Please enter Medical Institution Code.',
+              minlength: 'Code should be 4 digit number',
               maxlength: 'Code should be 4 digit number.',
+              institution_code: "※承認コードが間違っています",
           },
         },
         submitHandler: function (form) {
           form.submit();
         }
       });  
-
-          
+     
     $('#apply_form1').validate({
         rules: {
           parent_email: {
@@ -100,7 +131,7 @@ $(document).ready(function() {
           },
           confirm_parent_email: {
               required: true,
-              equalTo: "#parent_email"
+            //   equalTo: "#parent_email"
           },
           email: {
               required: true,
@@ -108,11 +139,13 @@ $(document).ready(function() {
           },
           confirm_email: {
               required: true,
-              equalTo: "#email"
+            //   equalTo: "#email"
           },
           medical_institution_code: {
             required: true,
-            maxlength: 4
+            minlength: 4,
+            maxlength: 4,
+            institution_code1: codes
           },
         },
         messages: {
@@ -122,7 +155,7 @@ $(document).ready(function() {
           },
           confirm_parent_email: {
               required: 'Please enter Confirm Email Address.',
-              equalTo: 'Confirm Email do not match with Email......',
+            //   equalTo: 'Confirm Email do not match with Email......',
           },
           email: {
               required: 'Please enter Email Address.',
@@ -130,12 +163,14 @@ $(document).ready(function() {
           },
           confirm_email: {
               required: 'Please enter Confirm Email Address.',
-              equalTo: 'Confirm Email do not match with Email......',
+            //   equalTo: 'Confirm Email do not match with Email......',
           },
           medical_institution_code: {
-              required: 'Please enter Medical Institution Code.',
-              maxlength: 'Code should be 4 digit number.',
-          },
+            required: 'Please enter Medical Institution Code.',
+            minlength: 'Code should be 4 digit number',
+            maxlength: 'Code should be 4 digit number.',
+            institution_code1: "※承認コードが間違っています",
+        },
         },
         submitHandler: function (form) {
           form.submit();

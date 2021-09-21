@@ -21,4 +21,16 @@ class MedicalInstitutionMasterTable
 		return $statement->fetchAll();
 	}
 
+	public function getId($code)
+	{
+		$statement = $this->db->query("SELECT id FROM medical_institution_master where code = $code");
+		return $statement->fetch();
+	}
+
+	public function getMedicalName($medicalId)
+	{
+		$statement = $this->db->query("SELECT name FROM medical_institution_master where id = $medicalId");
+		return $statement->fetch();
+	}
+
 }

@@ -115,7 +115,7 @@
     cursor: pointer;
   }
 
-  button#btn_continue:disabled ,#btn_continue:disabled{
+  button#btn_continue:disabled ,#btn_continue:disabled, button#btn_continue1:disabled ,#btn_continue1:disabled{
     opacity: .5;
   }
 
