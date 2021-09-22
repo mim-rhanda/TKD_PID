@@ -42,7 +42,7 @@ $codes = $table->getCodes();
                   <p class="warning-text"><span>「※」は必須項目です。</span></p>
                     <div class="row">
                       <div class="col-35">
-                        <label for="age">あなたの年齢を教えてください</label>
+                        <label for="age">あなたの年齢を教えてください:<span class="cmn-warning-text">※</span></label>
                       </div>
                       <div class="col-75">
                           <select class="form-control" name="age">
@@ -154,7 +154,7 @@ $codes = $table->getCodes();
                   <p class="warning-text"><span>「※」は必須項目です。</span></p>
                     <div class="row">
                       <div class="col-35">
-                        <label for="age">あなたの年齢を教えてください</label>
+                        <label for="age">あなたの年齢を教えてください:<span class="cmn-warning-text">※</span></label>
                       </div>
                       <div class="col-75">
                           <select class="form-control" name="age">
@@ -240,13 +240,12 @@ $codes = $table->getCodes();
                         <input type="checkbox" id="agreecheck1" name="agreecheck1" value="1">
                       </div>
                     </div>
-
-                    <div class="g-recaptcha" data-sitekey="6Ldv2bcUAAAAAFeYuQAQWH7I_BVv2_2_vvmn2Fpp"></div>
+                    
                     <div class="row">
                     <div class="g-recaptcha" data-sitekey="6Ldv2bcUAAAAAFeYuQAQWH7I_BVv2_2_vvmn2Fpp"></div>
                     </div>
 
-                    <div class="row">
+                    <!-- <div class="row">
                       <div class="human_check">
                         <div class="col-15 text">
                           <input type="checkbox" class="form-control" id="humancheck" name="humancheck">
@@ -259,7 +258,7 @@ $codes = $table->getCodes();
                         </div>
                         <p class="recaptcha_text">reCAPTCHA<br>プライバシーポリシー・利用規約</p>
                       </div>
-                    </div>
+                    </div> -->
 
                     <div class="row">
                       <button id="btn_continue1" disabled="true">入力へ進む</button>

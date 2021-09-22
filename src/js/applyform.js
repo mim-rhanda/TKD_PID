@@ -71,6 +71,9 @@ $(document).ready(function() {
 
     $('#apply_form').validate({
         rules: {
+          age: {
+            required: true,
+          },  
           parent_email: {
             required: true,
             email: true
@@ -95,9 +98,12 @@ $(document).ready(function() {
           },
         },
         messages: {
-            parent_email: {
-            required: 'Please enter Email Address.',
-            email: 'Please enter a valid Email Address.',
+          age: {
+            required: 'Please choose your age.',
+          },
+        　parent_email: {
+            　required: 'Please enter Email Address.',
+            　email: 'Please enter a valid Email Address.',
           },
           confirm_parent_email: {
               required: 'Please enter Confirm Email Address.',
@@ -125,6 +131,9 @@ $(document).ready(function() {
      
     $('#apply_form1').validate({
         rules: {
+          age: {
+            required: true,
+          }, 
           parent_email: {
             required: true,
             email: true
@@ -149,6 +158,9 @@ $(document).ready(function() {
           },
         },
         messages: {
+        　age: {
+            　required: 'Please choose your age.',
+        　　}, 
             parent_email: {
             required: 'Please enter Email Address.',
             email: 'Please enter a valid Email Address.',
