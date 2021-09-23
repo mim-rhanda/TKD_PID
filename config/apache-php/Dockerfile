@@ -11,4 +11,6 @@ RUN yum update -y  \
 
 COPY ./entrypoint.sh ./
 
+ENTRYPOINT ["/entrypoint.sh"]
+
 EXPOSE 80
