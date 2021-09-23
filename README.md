@@ -31,4 +31,19 @@ $ terraform destroy -target=module.rds.aws_instance.app_instance
    1. https://www.javadrive.jp/apache/install/index1.html#section3
 
 
+```shell
+# SSH Connect
 ssh -i ~/.ssh/id_rsa-20210909 ec2-user@18.181.150.106
+
+# MySQL Connect
+mysql -u root -p -h 127.0.0.1 --port 63306
+
+# Access to Container
+docker-compose exec php-apache /bin/bash
+
+# Restart 
+docker-compose stop php-apache
+docker-compose rm php-apache
+docker-compose up -d
+```
+
