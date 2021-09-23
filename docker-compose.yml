@@ -1,14 +1,14 @@
 version: "3.9"
 
 services:
-#  db:
-#    image: mysql:5.7
-#    restart: always
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root
-#      MYSQL_DATABASE: clinical_study
-#      MYSQL_USER: clinical_study
-#      MYSQL_PASSWORD: clinical_study
+  database:
+    image: mysql:5.7
+    ports:
+      - "63306:3306"
+    environment:
+      MYSQL_DATABASE: clinical_stud
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
 
   php-apache:
     build: ./config/apache-php
@@ -16,4 +16,8 @@ services:
       - "8080:80"
     volumes:
       - ./src:/var/www/html
-    restart: always
+    environment:
+      DB_HOST: database
+      DB_NAME: clinical_study
+      DB_USER: root
+      DB_PASS: root
