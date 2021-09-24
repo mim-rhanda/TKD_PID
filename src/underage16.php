@@ -45,7 +45,7 @@
                             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
                             Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
                         </p>
-                         <p class="pdf_download"><a href="pdf/samplepdf.pdf" download="sample.pdf">PDFダウンロード</a></p>
+                         <p class="pdf_download"><a href="pdf/0921_agreement_doc.pdf" download="sample.pdf">PDFダウンロード</a></p>
                     </div>
                 </div>
 
