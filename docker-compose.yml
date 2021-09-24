@@ -16,7 +16,7 @@ services:
       - "8080:80"
     volumes:
       - ./src:/var/www/html
-      - ./aws-resources/scripts/httpd-dev.conf:/etc/httpd/conf/httpd.conf
+      - ./aws-resources/scripts/httpd-local.conf:/etc/httpd/conf/httpd.conf
     environment:
       DB_HOST: database
       DB_NAME: clinical_study
