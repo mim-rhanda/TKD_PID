@@ -24,10 +24,10 @@ mysql -u root -p -h 127.0.0.1 --port 63306
 ## Certbot
 
 ```bash
-certbot certonly -w /var/www/html -d pid-dev.3hpguardian.com -m kakimoto-kentaro@3h-ct.co.jp -n 
+certbot certonly -w /var/www/html -d pid-dev.3hpguardian.com -m kakimoto-kentaro@3h-ct.co.jp --pre-hook 'systemctl stop httpd'
 
 # cron job
-00 4 * * 0 /bin/certbot renew –post-hook "/usr/bin/systemctl reload httpd"
+00 4 * * 0 /bin/certbot renew --post-hook "/usr/bin/systemctl reload httpd"
 ```
 
 ```shell

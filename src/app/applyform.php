@@ -17,12 +17,12 @@ $codes = $table->getCodes();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/../assets/css/bootstrap.min.css"> -->
+    <script src="../assets/js/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <script src="js/applyform.js"></script>
+    <script src="../assets/js/applyform.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         let codes = [];
@@ -139,7 +139,7 @@ $codes = $table->getCodes();
                           <label >私はロボットではありません</label>
                         </div>
                         <div class="col-40" reptcha_img>
-                          <img src="img/recaptcha.png" alt="recaptcha" width="70px">
+                          <img src="../assets/img/recaptcha.png" alt="recaptcha" width="70px">
                         </div>
                         <p class="recaptcha_text">reCAPTCHA<br>プライバシーポリシー・利用規約</p>
                       </div>
@@ -254,7 +254,7 @@ $codes = $table->getCodes();
                           <label >私はロボットではありません</label>
                         </div>
                         <div class="col-40" reptcha_img>
-                          <img src="img/recaptcha.png" alt="recaptcha" width="70px">
+                          <img src="../assets/img/recaptcha.png" alt="recaptcha" width="70px">
                         </div>
                         <p class="recaptcha_text">reCAPTCHA<br>プライバシーポリシー・利用規約</p>
                       </div>
