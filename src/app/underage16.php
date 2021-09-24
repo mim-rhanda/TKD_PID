@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/common.js"></script>
+    <link rel="stylesheet" href="../asset/css/style.css">
+    <script src="../asset/js/jquery.min.js"></script>
+    <script src="../asset/js/custom.js"></script>
 </head>
 <body>
     <div class="container">
@@ -23,7 +23,7 @@
                             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
                             Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
                         </p>
-                         <p class="pdf_download"><a href="../assets/pdf/samplepdf.pdf" download="sample.pdf">PDFダウンロード</a></p>
+                         <p class="pdf_download"><a href="../asset/pdf/samplepdf.pdf" download="sample.pdf">PDFダウンロード</a></p>
                     </div>
                 </div>
 
@@ -45,7 +45,7 @@
                             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
                             Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
                         </p>
-                         <p class="pdf_download"><a href="../assets/pdf/0921_agreement_doc.pdf" download="sample.pdf">PDFダウンロード</a></p>
+                         <p class="pdf_download"><a href="../asset/pdf/0921_agreement_doc.pdf" download="sample.pdf">PDFダウンロード</a></p>
                     </div>
                 </div>
 

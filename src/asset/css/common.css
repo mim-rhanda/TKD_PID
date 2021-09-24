@@ -1,0 +1,444 @@
+@charset "UTF-8";
+/*
+	Filename: common
+	Version: 1.0.1
+*/
+/*-----------------------------------------------------
+	Typography
+------------------------------------------------------*/
+em {
+	font-weight: 600;
+  font-style: normal;
+}
+address {
+	font-style: normal;
+}
+
+/*-----------------------------------------------------
+	Elements
+------------------------------------------------------*/
+body {
+	word-wrap: break-word;
+  overflow-y: scroll !important;
+}
+h1 {
+}
+h2, h3, h4, h5, h6 {
+}
+p {
+  letter-spacing: -0.05em;
+}
+ul, ol, dl {
+}
+ul li {
+	list-style-type: none;
+}
+ol li {
+	list-style-type: decimal;
+}
+img {
+	vertical-align: bottom;
+}
+
+/*-----------------------------------------------------
+	Link
+------------------------------------------------------*/
+a {
+	text-decoration: none;
+	color: #000;
+	-webkit-transition: all .25s;
+	   -moz-transition: all .25s;
+	    -ms-transition: all .25s;
+	     -o-transition: all .25s;
+	        transition: all .25s;
+}
+a > img {
+	-webkit-transition: all .25s;
+	   -moz-transition: all .25s;
+	    -ms-transition: all .25s;
+	     -o-transition: all .25s;
+	        transition: all .25s;
+}
+a:hover > img, a:hover{
+	filter: alpha(opacity=75);
+	opacity: 0.75;
+}
+a[href^="tel:"] {
+    pointer-events: none;
+}
+/*-----------------------------------------------------
+	others
+------------------------------------------------------*/
+.sp, .tb {
+  display: none;
+}
+/*-----------------------------------------------------
+	layout
+------------------------------------------------------*/
+.wrap {
+  width: 1050px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/*-----------------------------------------------------
+  header
+------------------------------------------------------*/
+header {
+  width: 100%;
+  background: url("../img/common/bg_pat.jpg");
+}
+header .header_inner {
+  width: 1050px;
+  margin-right: auto;
+  margin-left: auto;
+}
+header .header_logo {
+  width: 65%;
+  padding: 30px 0;
+}
+header .header_logo img {
+  width: 100%;
+  max-width: 418px;
+}
+/*--- sp_menu ---*/
+.hamburger {
+  display: block;
+  width: 42px;
+  height: 42px;
+  position: absolute;
+	top: 35px;
+	left: calc( 50% + 433px );
+	transform: translateX(-50%);
+	-webkit- transform: translateX(-50%);
+  z-index: 10001;
+  padding: 0;
+  background: url("../img/common/menu.png") no-repeat bottom center;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+.hamburger.active {
+  top: 10vw;
+  left: calc( 50% + 250px );
+  background: url("../img/common/close.png") no-repeat center center;
+}
+.fat-nav {
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: rgba(184,247,253, .95);
+  -moz-transform: scale(1.4);
+  -ms-transform: scale(1.4);
+  -webkit-transform: scale(1.4);
+  transform: scale(1.4);
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: transform;
+  -moz-transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.fat-nav__wrapper {
+  width: 394px;
+  max-width: 394px;
+  margin: 300px auto 0;
+  display: block;
+  table-layout: inherit;
+}
+.fat-nav ul {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.fat-nav li a {
+  display: block;
+  margin-bottom: 40px;
+}
+.fat-nav li a img {
+  width: 71.4325%;
+}
+
+.fat-nav li:last-child a {
+  margin-bottom: 85px;
+}
+.fat-nav__wrapper_bottom {
+  margin: 0 auto;
+  text-align: center;
+}
+.fat-nav__wrapper_bottom_btn {
+  width: 50%;
+  text-align: center;
+}
+.fat-nav__wrapper_bottom_btn:first-child {
+  padding-right: 20px;
+  text-align: right;
+}
+.fat-nav__wrapper_bottom_btn:first-child a img {
+  width: 38.745%;
+}
+.fat-nav__wrapper_bottom_btn:last-child {
+  padding-left: 20px;
+  text-align: left;
+}
+.fat-nav__wrapper_bottom_btn:last-child a img {
+  width: 58.12%;
+}
+
+/*-----------------------------------------------------
+  cv fit
+------------------------------------------------------*/
+#cv {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: 20px 0;
+  background: url("../img/common/bg_pat.jpg");
+  text-align: center;
+  z-index: 50;
+}
+
+
+/*-----------------------------------------------------
+  footer
+------------------------------------------------------*/
+footer {
+  width: 100%;
+  padding: 60px 0 340px;
+  background: url("../img/common/footer_bg.jpg") top center;
+  background-repeat: repeat-x;
+}
+.footer_inner {
+  max-width: 696px;
+  margin: 0 auto;
+}
+.footer_inner h2 {
+  margin-bottom: 20px;
+}
+.footer_inner .footer_l {
+  width: 320px;
+  text-align: center;
+}
+.footer_inner .footer_l p, .footer_inner .footer_r p {
+  font-size: 20px;
+  text-align: left;
+}
+.footer_inner .footer_r {
+  width: 220px;
+}
+
+/*-----------------------------------------------------
+	1050
+------------------------------------------------------*/
+@media screen and (min-width: 750px) and (max-width: 1050px) {
+  /*-----------------------------------------------------
+    layout
+  ------------------------------------------------------*/
+  .wrap {
+    width: 100%;
+    padding: 0 3%;
+  }
+  /*-----------------------------------------------------
+    header
+  ------------------------------------------------------*/
+  header {
+    padding: 0 3%;
+  }
+  header .header_inner {
+    width: 100%;
+  }
+  header .header_logo {
+    width: 100%;
+  }
+  /*--- sp_menu ---*/
+  .hamburger {
+    left: auto;
+    right: 3%;
+    transform: none;
+    -webkit- transform: none;
+  }
+  
+  /*-----------------------------------------------------
+    cv fit
+  ------------------------------------------------------*/
+  #cv {
+    padding: 1.905vw 0;
+  }
+
+  #cv img {
+    width: 25%;
+  }
+
+}
+
+
+@media screen and (max-width: 749px) {
+	/*-----------------------------------------------------
+		Elements
+	------------------------------------------------------*/
+	a[href^="tel:"] {
+		pointer-events: auto;
+	}
+  img {
+      max-width: 100%;
+      height: auto;
+  }
+  /*-----------------------------------------------------
+    others
+  ------------------------------------------------------*/
+  .pc {
+    display: none;
+  }
+  .tb {
+    display: none;
+  }
+  .sp {
+    display: block;
+  }
+  /*-----------------------------------------------------
+    layout
+  ------------------------------------------------------*/
+  .wrap {
+    width: 100%;
+    padding: 0 5%;
+  }
+  /*-----------------------------------------------------
+    header
+  ------------------------------------------------------*/
+  header {
+    padding: 0 5%;
+  }
+  header .header_inner {
+    width: 100%;
+  }
+  header .header_logo {
+    width: 80%;
+  }
+  header .header_logo img {
+    max-width: 100%;
+  }
+  /*--- sp_menu ---*/
+  .hamburger {
+    top: 5.667vw;
+    left: auto;
+    right: 5%;
+    transform: none;
+    -webkit- transform: none;
+    background: url("../img/common/sp/menu.png") no-repeat bottom center;
+  }
+  .hamburger.active {
+    top: 20vw;
+    left: auto;
+    right: 15%;
+    background: url("../img/common/close.png") no-repeat center center;
+  }
+  .fat-nav__wrapper {
+    width: 53.405vw;
+    margin: 40.729vw auto 0;
+    display: block;
+    table-layout: inherit;
+  }
+  .fat-nav li a {
+    display: block;
+    margin-bottom: 5.34vw;
+  }
+  .fat-nav li a img {
+    width: 100%;
+  }
+  .fat-nav li:last-child a {
+    margin-bottom: 11.348vw;
+  }
+  .fat-nav__wrapper_bottom {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .fat-nav__wrapper_bottom_btn {
+    width: 100%;
+    text-align: center;
+  }
+  .fat-nav__wrapper_bottom_btn img {
+    width: 50%;
+    margin-bottom: 4.005vw;
+  }
+  .fat-nav__wrapper_bottom_btn:first-child {
+    padding-right: 0;
+    text-align: center;
+  }
+  .fat-nav__wrapper_bottom_btn:first-child a img {
+    width: 50%;
+  }
+  .fat-nav__wrapper_bottom_btn:last-child {
+    padding-left: 0;
+    text-align: center;
+  }
+  .fat-nav__wrapper_bottom_btn:last-child a img {
+    width: 50%;
+  }
+
+
+  /*-----------------------------------------------------
+    cv fit
+  ------------------------------------------------------*/
+    #cv img {
+      width: 45%;
+    }
+
+
+  /*-----------------------------------------------------
+    footer
+  ------------------------------------------------------*/
+  footer {
+    width: 100%;
+    padding: 8.011vw 5% 37.383vw;
+    background: url("../img/common/sp/footer_bg.jpg") top center;
+  }
+  .footer_inner {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .footer_inner h2 {
+    margin-bottom: 2.67vw;
+  }
+  .footer_inner .footer_l {
+    width: 100%;
+    margin-bottom: 13.351vw;
+  }
+  .footer_inner .footer_l p, .footer_inner .footer_r p {
+    width: 70%;
+    margin: 0 auto;
+    font-size: 4.005vw;
+    text-align: left;
+  }
+  .footer_inner .footer_r {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .hamburger {
+    top: 7.667vw;
+  }
+  .hamburger.active {
+    top: 7.667vw;
+    right: 5%;
+  }
+  .fat-nav__wrapper {
+    margin: 65.729vw auto 0;
+  }
+
+}
