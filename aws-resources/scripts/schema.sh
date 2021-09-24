@@ -9,6 +9,8 @@ then
   sudo yum install mysql -y
   sudo yum install httpd -y
   sudo amazon-linux-extras install -y php7.4
+  sudo amazon-linux-extras install -y epel
+  sudo install certbot-apache -y
 
   sudo cp -pr ./TKD_PID/src/* /var/www/html/
   sudo rm -rf ./TKD_PID
