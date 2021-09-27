@@ -81,7 +81,7 @@ resource "aws_instance" "app_instance" {
       private_key = file("~/.ssh/id_rsa-20210909")
     }
 
-    source      = "../scripts/httpd.conf"
+    source      = "../scripts/httpd-${var.ENV}.conf"
     destination = "/etc/httpd/conf/httpd.conf"
   }
 
