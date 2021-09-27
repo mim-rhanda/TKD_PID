@@ -19,6 +19,12 @@ docker-compose up -d
 
 # mysql にアクセスしてDDLを実行する password=root
 mysql -u root -p -h 127.0.0.1 --port 63306
+
+# library install 
+docker-compose exec php-apache /bin/bash
+cd /var/www/html/form
+composer install
+exit
 ```
   
 ## Certbot
