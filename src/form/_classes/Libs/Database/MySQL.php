@@ -14,7 +14,7 @@ class MySQL
 	private $db;
 
 	public function __construct(
-		$dbhost = "127.0.0.1",
+		$dbhost = "database",
 		$dbuser = "root",
 		$dbname = "clinical_study",
 		$dbpass = "root"
