@@ -6,7 +6,7 @@ services:
     ports:
       - "63306:3306"
     environment:
-      MYSQL_DATABASE: clinical_stud
+      MYSQL_DATABASE: clinical_study
       MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: root
 
