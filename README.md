@@ -11,6 +11,13 @@ $ terraform destroy -target=module.rds.aws_instance.app_instance
 - MySQL Version:  5.7
 
 ## Setup
+Windows環境でgitコマンドを使う場合、改行コードの自動変換機能をオフにしておく。
+```shell
+git config --global core.autocrlf input
+```
+- 参考：[standard_init_linux.go:211: exec user process caused "no such file or directory" の直し方](https://qiita.com/kabik/items/5591f62c0ef6ddef5db2)
+
+
 ```shell
 # docker image build
 docker-compose build
