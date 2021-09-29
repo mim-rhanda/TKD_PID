@@ -38,6 +38,7 @@ $codes = $table->getCodes();
         <div class="main_wrapper">
             <div class="content_wrapper">
                 <h1>研究参加申込フォーム</h1>
+
                 <form class= "apply_form_pc" id="apply_form" action="mail.php" method="post">
                   <p class="warning-text"><span>「※」は必須項目です。</span></p>
                     <div class="row">
@@ -131,18 +132,7 @@ $codes = $table->getCodes();
                     </div>
 
                     <div class="row">
-                      <div class="human_check">
-                        <div class="col-15 text">
-                          <input type="checkbox" class="form-control" id="humancheck" name="humancheck">
-                        </div>
-                        <div class="col-55">
-                          <label >私はロボットではありません</label>
-                        </div>
-                        <div class="col-40" reptcha_img>
-                          <img src="../asset/img/recaptcha.png" alt="recaptcha" width="70px">
-                        </div>
-                        <p class="recaptcha_text">reCAPTCHA<br>プライバシーポリシー・利用規約</p>
-                      </div>
+                      <div class="g-recaptcha" data-sitekey="6Ldv2bcUAAAAAFeYuQAQWH7I_BVv2_2_vvmn2Fpp"></div>
                     </div>
 
                     <div class="row">
