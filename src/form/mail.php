@@ -14,12 +14,12 @@ $mail = new PHPMailer(true);
 //Set PHPMailer to use SMTP.
 $mail->isSMTP();            
 //Set SMTP host name                          
-$mail->Host = "smtp.gmail.com";
+$mail->Host = "email-smtp.ap-northeast-1.amazonaws.com";
 //Set this to true if SMTP host requires authentication to send email
 $mail->SMTPAuth = true;                          
 //Provide username and password     
-$mail->Username = "testmailer49@gmail.com";                 
-$mail->Password = "test49007";                           
+$mail->Username = "AKIAU2FE7JWN3Z7URD6N";                 
+$mail->Password = "BPPwO5u/aSqYgW53g7jpHaNGjoR0srb7Yt+FPcRcmHj3";                           
 //If SMTP requires TLS encryption then set it
 $mail->SMTPSecure = "tls";                           
 //Set TCP port to connect to
@@ -29,7 +29,7 @@ $mail->CharSet='UTF-8';
 $mail->Encoding='base64';
 $mail->isHTML(true);
 
-$mail->From = "testmailer49@gmail.com";
+$mail->From = "no-reply@3hpguardian.com";
 $mail->FromName = "メール送信テスト";
 
 $mail->addAddress($_POST['parent_email'], "保護者様");

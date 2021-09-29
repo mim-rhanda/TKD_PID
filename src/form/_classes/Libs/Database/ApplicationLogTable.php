@@ -27,7 +27,24 @@ class ApplicationLogTable
 
 			return $this->db->lastInsertId();
 		} catch (PDOException $e) {
-			return $e->getMessage()();
+			return $e->getMessage();
+		}
+	}
+	
+    public function select($lastInsertId)
+	{
+		try {
+			$query = "SELECT 
+			parent_email, email, medical_institution_code, age,medical_institution_id, medical_institution_name 
+			FROM application_log WHERE id = $lastInsertId";
+
+			$statement = $this->db->prepare($query); 
+			$statement->execute();
+			$array = json_decode(json_encode($statement->fetch()), true);
+
+			return $array;
+		} catch (PDOException $e) {
+			return $e->getMessage();
 		}
 	}
 

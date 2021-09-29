@@ -19,12 +19,19 @@ $data = [
     "medical_institution_name" => $medical_institution_name ?? 'Unknown'
 	// "consent_for_join" => $_POST['consent_for_join'] ?? 'Unknown',
 	// "ascent_for_join" => $_POST['ascent_for_join'] ?? 'Unknown',
-]; 
+];
 
-    $table = new ApplicationLogTable(new MySQL());
-    if ($table) {
-	    $table->insert($data);
-    } 
+$table = new ApplicationLogTable(new MySQL());
+if ($table) {
+    $lastInsertId = $table->insert($data);
+    $insertData = $table->select($lastInsertId);
+
+    if ($data !== $insertData) {
+        echo '<meta http-equiv="refresh" content="5;URL=applyform.php">
+        <p>エラーが発生しました。<br/>5秒後に研究参加申込フォームへ戻ります。</p>';
+        exit();
+    }
+}
 ?>
 
 <!DOCTYPE html>

@@ -8,6 +8,7 @@ then
   sudo yum install git -y
   sudo yum install mysql -y
   sudo yum install httpd -y
+  sudo yum install php-mbstring
   sudo amazon-linux-extras install -y php7.4
   sudo amazon-linux-extras install -y epel
   sudo install certbot-apache -y
